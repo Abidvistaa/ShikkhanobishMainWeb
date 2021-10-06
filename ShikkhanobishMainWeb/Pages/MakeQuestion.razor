@@ -1,0 +1,279 @@
+﻿@using ShikkhanobishMainWeb.Models
+@using Flurl.Http
+
+@page "/MakeQuestion"
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>MakeQuestion</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Responsive bootstrap 4 admin template" name="description" />
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link href="~/css/makeQues.css" />
+    
+</head>
+
+<body>
+
+    <!-- Begin page -->
+
+
+
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
+    <br />
+
+
+
+            <div class="content">
+
+                <!-- Start container-fluid -->
+                <div class="container-fluid">
+
+                    <div>
+                        <div class="form-group row">
+                            <div class="col-md-4 ">
+                                <a href="">
+                                    <i class="fas fa-backward"></i>
+                                    
+                                </a>
+                            </div>
+                            <div class="col-md-4 ">
+                                <h3 style="color:cadetblue">Question Making</h3>
+                            </div>
+                            <div class="col-md-4 " style="text-align:right">
+                                <label style="color:crimson;font-family:Arial;font-size:16px; ;">TeacherName</label>
+                            </div>
+                        </div>
+                        
+
+                        
+                        <br />
+                        <br />
+                        <EditForm Model="@Question" >
+
+                            <div>
+                                <div class="form-group row">
+                                    <div class="col-md-4 ">
+                                        <select class="form-control" id=""  @onchange="ClassChanged">
+                                            <option value="">-- Select Class --</option>
+                                            @foreach (var item in objList)
+                                            {
+                                                <option value="@item.classID">@item.name</option>
+                                            }
+                                        </select>
+                                        
+                                    </div>
+                                    <div class="col-md-4 ">
+                                        <select class="form-control" id=""  @onchange ="SubjectChanged" >
+                                            <option value="">-- Select Subject --</option>
+                                            @foreach (var item in objList2)
+                                            {
+                                                <option value="@item.subjectID">@item.name</option>
+                                            }
+                                        </select>
+                                        
+                                    </div>
+                                    <div class="col-md-4 ">
+                                        <select class="form-control" id=""  >
+                                            <option value="">-- Select Chapter --</option>
+                                            @foreach (var item in objList3)
+                                            {
+                                                <option value="@item.chapterID">@item.name</option>
+                                            }
+                                        </select>
+                                        
+                                    </div>
+
+                                </div>
+                                <br />
+                                <br />
+                                <br />
+
+                                <div class="form-group row">
+                                    <div class="col-m8 offset-1">
+                                        <h6 style="color:maroon">Write Question</h6>
+                                        <textarea class="form-control offset-1 mainQuesArea" @bind="Question.mainQuestion" ></textarea>
+                                    </div>
+
+                                </div>
+                                <br />
+                                <br />
+
+                                <div class="form-group row">
+                                    <div class="col-m2 offset-1">
+                                        <label style="color:maroon">Option1:</label>&nbsp;
+                                    </div>
+                                    <div class="offset-1">
+
+                                        <textarea class="form-control" @bind="Question.option1" style="width:250px;height:100px;"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-m2 offset-1">
+                                        <label style="color:maroon">Option2:</label>&nbsp;
+                                    </div>
+                                    <div class="offset-1">
+
+                                        <textarea class="form-control" @bind="Question.option2" style="width:250px;height:100px;"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-m2 offset-1">
+                                        <label style="color:maroon">Option3:</label>&nbsp;
+                                    </div>
+                                    <div class="offset-1">
+
+                                        <textarea class="form-control" @bind="Question.option3" style="width:250px;height:100px;"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-m2 offset-1">
+                                        <label style="color:maroon">Option4:</label>&nbsp;
+                                    </div>
+                                    <div class="offset-1">
+
+                                        <textarea class="form-control"  @bind="Question.option4" style="width:250px;height:100px;"></textarea>
+                                    </div>
+                                </div>
+                                <br />
+                                <hr />
+                                <div class="">
+                                    <h5>Right Answer</h5>
+                                    <br />
+                                    <div class="offset-1">
+                                        <input type="radio" name="Option" value="Op" />    <label style="font-size:18px">A</label> &nbsp;&nbsp;&nbsp;
+                                        <input type="radio" name="Option" value="Op" />    <label style="font-size:18px">B</label> &nbsp;&nbsp;&nbsp;
+                                        <input type="radio" name="Option" value="Op" />    <label style="font-size:18px">C</label> &nbsp;&nbsp;&nbsp;
+                                        <input type="radio" name="Option" value="Op" />    <label style="font-size:18px">D</label> &nbsp;&nbsp;&nbsp;
+                                    </div>
+
+
+                                </div>
+                                <br />
+                                <div class="form-group row">
+                                    <div class="offset-2">
+                                        <input type="submit" style="color:seagreen;font-size:16px" />
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            </EditForm>
+                        </div>
+                        
+
+
+                </div>
+                <br />
+                <!-- end container-fluid -->
+                <!-- Footer Start -->
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                2021 &copy; shikkhanobish
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- end Footer -->
+            </div>
+            <!-- end content -->
+
+
+
+
+    <!-- END wrapper -->
+    <!-- Vendor js -->
+   
+</body>
+</html>
+
+
+@code{
+    public Question Question = new Question();
+
+    string cid{ get; set; }
+    string sid { get; set; }
+
+    List<ClassInfo> objList = new List<ClassInfo>();
+    List<Subject> objList2 = new List<Subject>();
+    List<Chapter> objList3 = new List<Chapter>();
+
+    List<Subject> allSubject = new List<Subject>();
+    List<Chapter> allChapter = new List<Chapter>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        objList = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/getClassInfo".GetJsonAsync<List<ClassInfo>>();
+
+        //await GetClassInfo();
+        await GetSubInfo();
+        await GetChapterInfo();
+        //objList2 = allSubject;
+        //objList3 = allChapter;
+
+
+    }
+    public async Task GetClassInfo()
+    {
+        //objList = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/getClassInfo".GetJsonAsync<List<ClassInfo>>();
+
+    }
+
+    public async Task GetSubInfo()
+    {
+        allSubject = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/getSubject".GetJsonAsync<List<Subject>>();
+
+    }
+    public async Task GetChapterInfo()
+    {
+        allChapter = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/getChapter".GetJsonAsync<List<Chapter>>();
+
+    }
+
+
+    private void  ClassChanged(ChangeEventArgs classEvent)
+    {
+        //objList.Clear();
+        //objList2.Clear();
+        cid = classEvent.Value.ToString();
+        Question.classID = int.Parse(cid);
+        for (int i=0;i< allSubject.Count;i++)
+        {
+            if (allSubject[i].classID.ToString()==cid)
+            {
+                objList2.Add(allSubject[i]);
+
+            }
+        }
+
+
+    }
+    private void SubjectChanged(ChangeEventArgs subjectEvent)
+    {
+        //objList2.Clear();
+        //objList3.Clear();
+        sid = subjectEvent.Value.ToString();
+        for (int i = 0; i < allChapter.Count; i++)
+        {
+            if (allChapter[i].subjectID.ToString() == sid)
+            {
+                objList3.Add(allChapter[i]);
+
+            }
+        }
+
+
+    }
+
+}
+
+
+
