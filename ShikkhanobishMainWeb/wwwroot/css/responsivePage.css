@@ -1,4 +1,9 @@
-﻿@media(min-width:1126px) {
+﻿
+.mainQuesArea {
+    width: 600px;
+}
+
+@media(min-width:1126px) {
 
     .tName label{
         padding-left:250px;

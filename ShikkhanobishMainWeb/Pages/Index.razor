@@ -1,7 +1,7 @@
 ﻿@using ShikkhanobishMainWeb.Models
 @using Flurl.Http
-
-@page "/"
+@using Microsoft.AspNetCore.Components;
+@page "/{tID}"
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,120 +19,109 @@
 <body>
 
     <!-- Begin page -->
-  
-
-        
-        <!-- Start Page Content here -->
-        <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
 
 
 
-            <div class="content">
+    <div class="content">
 
-                <!-- Start container-fluid -->
-                <div class="container-fluid">
-                    <!--row-->
-                    <div class="form-group row">
-                        <div class="offset-4">
-                            <h3 style="color:cadetblue">Teacher QuestionHistory</h3>
-                        </div>
-
-                    </div>
-                    <br />
-                    <br />
-
-                    <div class="form-group row">
-                        <div class="col-5" style="margin-left:270px">
-                            <div class="card-box widget-inline">
-                                <div class="col-md-6 " style="margin-left:70px">
-                                    <div class="text-center p-3">
-                                        <h2 class="mt-2"> <i class="fas fa-equals text-info mr-2"></i><b>46</b></h2>
-                                        <p class="text-muted mb-0">
-                                            Total Uploaded
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--end row -->
-
+        <!-- Start container-fluid -->
+        <div class="container-fluid">
+            <!--row-->
+            <div class="form-group row">
+                <div class="offset-4">
+                    <h3 style="color:cadetblue">Teacher QuestionHistory</h3>
                 </div>
-                <br />
 
-                <div class="row">
-                    <div class="offset-10">
-                        
-                        <a href="MakeQuestion">
-                            <i class="fas fa-marker"></i>
-                            <span> Make Question </span>
-                        </a>
-                    </div>
-                    <br />
-                    <br />
-                    <div class="col-md-12">
-                        <div class="card tqTable">
-                            <div class="card-header">
-                                <h5>TeacherQuestionHistory</h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-area">
-                                    <!-- table-responsive -->
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th>teacherID</th>
-                                                    <th>questionID</th>
-                                                    <th>Review</th>
-
-                                                </tr>
-                                            </thead>
-
-                                            <tbody>
-                                                @for (int i = 0; i < quesList.Count; i++)
-                                                {
-
-                                                    for (int j = 0; j < teachersList.Count; j++)
-                                                    {
-                                                <tr>
-                                                    <td>@teachersList[i].teacherID</td>
-                                                    <td>@quesList[i].questionID</td>
-                                                    <td>@quesList[i].review</td>
-
-                                                </tr>
-                                                    }
-
-                                                }
-
-                                            </tbody>
-
-
-
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- end container-fluid -->
-                <!-- Footer Start -->
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12">
-                                2021 &copy; shikkhanobish
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-                <!-- end Footer -->
             </div>
-            <!-- end content -->
+            <br />
+            <br />
+
+            <div class="form-group row">
+                <div class="card-box widget-inline offset-5">
+                    <div class="text-center p-3">
+                        <h2 class="mt-2"> <i class="fas fa-equals text-info mr-2"></i><b>@countTQH</b></h2>
+                        <p class="text-muted mb-0">
+                            Total Uploaded
+                            
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--end row -->
+
+        </div>
+        <br />
+
+        <div class="row">
+            <div class="offset-10">
+
+                <a href="MakeQuestion">
+                    <i class="fas fa-marker"></i>
+                    <span> Make Question </span>
+                </a>
+            </div>
+            <br />
+            <br />
+            <div class="col-md-12">
+                <div class="card tqTable">
+                    <div class="card-header">
+                        <h5>TeacherQuestionHistory</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-area">
+                            <!-- table-responsive -->
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>tqID</th>
+                                            <th>teacherID</th>
+                                            <th>questionID</th>
+                                            <th>Review</th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @for (int i = 0; i < tqhList.Count; i++)
+                                        {
+                                            <tr>
+                                                <td>@tqhList[i].tqID</td>
+                                                <td>@tqhList[i].teacherID</td>
+                                                <td>@tqhList[i].questionID</td>
+                                                <td>@tqhList[i].review</td>
+
+                                            </tr>
+
+                                        }
+
+                                    </tbody>
 
 
 
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end container-fluid -->
+        <!-- Footer Start -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        2021 &copy; shikkhanobish
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- end Footer -->
+    </div>
+    <!-- end content -->
     <!-- END wrapper -->
     <!-- Vendor js -->
 
@@ -140,8 +129,53 @@
 </html>
 
 @code{
-    List<Question> quesList = new List<Question>();
-    List<Teacher> teachersList = new List<Teacher>();
-}
+    [Parameter]
+    public string tID { get; set; }
 
+    int countTQH;
+    List<TeacherQuesHistory> tqhList = new List<TeacherQuesHistory>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetTeacherQuestionHistory();
+        await GetStudentCount();
+    }
+
+    public async Task GetTeacherQuestionHistory()
+    {
+        var thl = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/getTeacherQuestionHistory".GetJsonAsync<List<TeacherQuesHistory>>();
+
+        for (int i= 0; i < thl.Count; i++)
+        {
+            if(thl[i].teacherID.ToString() == tID)
+            {
+                tqhList.Add(thl[i]);
+            }
+        }
+
+    }
+
+    public async Task GetStudentCount()
+    {
+
+        int count = 0;
+        var list = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/getTeacherQuestionHistory".GetJsonAsync<List<TeacherQuesHistory>>();
+        for(int i = 0; i < list.Count; i++)
+        {
+            if (tID == list[i].teacherID.ToString())
+            {
+                count++;
+
+            }
+            countTQH = count;
+        }
+
+
+
+
+    }
+
+
+
+}
 
