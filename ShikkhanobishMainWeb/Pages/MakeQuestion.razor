@@ -1,7 +1,7 @@
 ﻿@using ShikkhanobishMainWeb.Models
 @using Flurl.Http
 
-@page "/MakeQuestion"
+@page "/MakeQuestion/{tID}"
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +15,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link href="~/css/makeQues.css" />
     <link href="~/css/responsivePage.css" />
-    
 </head>
 
 <body>
@@ -34,30 +33,28 @@
 
                 <!-- Start container-fluid -->
                 <div class="container-fluid">
-
                     <div>
                         <div class="form-group row">
                             <div class="col-md-4 ">
                                 <a href="">
-                                    <i class="fas fa-backward"></i>
-                                    
+                                    <i class="fas fa-backward btn btn-outline-danger"></i>
                                 </a>
                             </div>
-                            <div class="col-md-4 ">
-                                <h3 style="color:cadetblue">Question Making</h3>
+
+                            <div class="col-md-4">
+                                <h3 style="color:darkmagenta">Question Making</h3>
                             </div>
-                            <div class="col-md-4 " style="text-align:right">
-                                <label style="color:crimson;font-family:Arial;font-size:16px; ">TeacherName</label>
+                            <div class="col-md-4" style="text-align:right">
+                                <h2 style="color:crimson;font-family:Garamond; ">TeacherName</h2>
                             </div>
                         </div>
-                        
-
                         
                         <br />
                         <br />
                         <EditForm Model="@Question" >
 
                             <div>
+
                                 <div class="form-group row">
                                     <div class="col-md-4 ">
                                         <select class="form-control" id="class" @onchange="ClassChanged">
@@ -94,11 +91,21 @@
                                 <br />
                                 <br />
                                 <br />
+                                <div class="form-group row">
+                                    <div class="col-1">
+                                        <h6 style="color:#7146FE">Question ID</h6>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="text" class="form-control" @bind="@Question.questionID"/>
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
 
                                 <div class="form-group row">
                                     <div class="col-12">
                                         <h6 style="color:#7146FE">Write Question</h6>
-                                        <textarea class="col-12" @bind="Question.mainQuestion"></textarea>
+                                        <textarea  class="form-control col-12" style="height:150px" @bind="Question.mainQuestion"></textarea>
                                     </div>
 
                                 </div>
@@ -107,7 +114,7 @@
 
                                 <div class="form-group row">
                                     <div class="col-m2 offset-1">
-                                        <label style="color:maroon">Option1:</label>&nbsp;
+                                        <h6 style="color:#7146FE">Option1:</h6>
                                     </div>
                                     <div class="offset-1">
 
@@ -116,47 +123,47 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-m2 offset-1">
-                                        <label style="color:maroon">Option2:</label>&nbsp;
-                                    </div>
+                                        <h6 style="color:#7146FE">Option2:</h6>
+                                    </div> 
                                     <div class="offset-1">
-
-                                        <textarea class="form-control" @bind="Question.option2" style="width:250px;height:100px;"></textarea>
+                                        <textarea class="form-control" @bind="Question.option2" style="width: 250px; height: 100px; text-align: center;"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-m2 offset-1">
-                                        <label style="color:maroon">Option3:</label>&nbsp;
+                                        <h6 style="color:#7146FE">Option3:</h6>
                                     </div>
                                     <div class="offset-1">
 
-                                        <textarea class="form-control" @bind="Question.option3" style="width:250px;height:100px;"></textarea>
+                                        <textarea class="form-control" @bind="Question.option3" style="width: 250px; height: 100px; text-align: center;"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-m2 offset-1">
-                                        <label style="color:maroon">Option4:</label>&nbsp;
+                                        <h6 style="color:#7146FE">Option4:</h6>
                                     </div>
-                                    <div class="offset-1">
 
-                                        <textarea class="form-control" @bind="Question.option4" style="width:250px;height:100px;"></textarea>
+                                    <div class="offset-1">
+                                        <textarea class="form-control" @bind="Question.option4" style="width: 250px; height: 100px; text-align: center;"></textarea>
                                     </div>
                                 </div>
+
                                 <br />
                                 <hr />
-                                <div class="">
-                                    <h5>Right Answer</h5>
+                                <div class="offset-1">
+                                    <h6 style="color:#7146FE">Right Answer</h6>
                                     <br />
-                                    <button  name="rightans" value="A" style="border-radius:50%; background-color: @selectedColorone" @onclick="sbOne">A</button>
-                                    <button name="rightans" value="B" style="border-radius:50%; background-color: @selectedColortwo " @onclick="sbTwo">B</button>
-                                    <button name="rightans" value="C" style="border-radius:50%; background-color: @selectedColorthree" @onclick="sbThree">C</button>
+                                    <button name="rightans" value="A" style="border-radius:50%; background-color: @selectedColorone" @onclick="sbOne">A</button>&nbsp;
+                                    <button name="rightans" value="B" style="border-radius:50%; background-color: @selectedColortwo " @onclick="sbTwo">B</button>&nbsp;
+                                    <button name="rightans" value="C" style="border-radius:50%; background-color: @selectedColorthree" @onclick="sbThree">C</button>&nbsp;
                                     <button name="rightans" value="D" style="border-radius:50%; background-color: @selectedColorfour" @onclick="sbFour">D</button>
-
-
                                 </div>
-                                <div class="offset-2">
-                                    <input type="submit" style="color:seagreen;font-size:16px" @onclick="SubmitQuestion" />
-
+                                <br />
+                                <br />
+                                <div class="offset-3">
+                                    <input type="submit" style=" font-size:16px" class="btn btn-outline-success" @onclick="SubmitQuestion"  />
                                 </div>
+                                <br />
                                 <br />
                                 <br />
                                 <div class="form-group row">
@@ -186,9 +193,6 @@
             </div>
             <!-- end content -->
 
-
-
-
     <!-- END wrapper -->
     <!-- Vendor js -->
    
@@ -199,7 +203,10 @@
 @code{
 
 
+    [Parameter]
+    public string tID { get; set; }
 
+    public TeacherQuesHistory TeacherQuesHistory = new TeacherQuesHistory();
     public Question Question = new Question();
 
     string cid{ get; set; }
@@ -289,7 +296,6 @@
     private void  ClassChanged(ChangeEventArgs classEvent)
     {
         //objList.Clear();
-        //objList2.Clear();
         cid = classEvent.Value.ToString();
         Question.classID = int.Parse(cid);
         for (int i=0;i< allSubject.Count;i++)
@@ -307,8 +313,7 @@
 
     private void SubjectChanged(ChangeEventArgs subjectEvent)
     {
-        //objList2.Clear();
-        //objList3.Clear();
+        
         sid = subjectEvent.Value.ToString();
         Question.subjectID = int.Parse(sid);
 
@@ -320,13 +325,10 @@
 
             }
         }
-
-
     }
+
     private void ChapterChanged(ChangeEventArgs chapterEvent)
     {
-        //objList2.Clear();
-        //objList3.Clear();
         chid = chapterEvent.Value.ToString();
         Question.chapterID = int.Parse(chid);
     }
@@ -334,9 +336,12 @@
 
     public async Task SubmitQuestion()
     {
+        Random rnd = new Random();
+        int hisotyId = rnd.Next(1, 1000);
+
         var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/setQuestion".PostUrlEncodedAsync(new
         {
-            questionID = "ghghh",
+            questionID = Question.questionID,
             classID = Question.classID,
             quesImages = "n/a",
             subjectID = Question.subjectID,
@@ -345,15 +350,22 @@
             option2 = Question.option2,
             option3 = Question.option3,
             option4 = Question.option4,
-            rightAnswer = Question.rightAnswer,
+            rightAnswer = Question.rightAnswer
         })
-                   .ReceiveJson<Response>();
+               .ReceiveJson<Response>();
+
+        var historyres = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/setTeacherQuestionHistory".PostUrlEncodedAsync(new
+        {
+
+            tqID= hisotyId,
+            teacherID =Int16.Parse(tID),
+            questionID = Question.questionID
+        })
+                  .ReceiveJson<Response>();
+
+
 
         bool allok = true;
-
-
-
-
 
         if (allok)
         {
@@ -364,6 +376,7 @@
 
 
     }
+    
 
 
 
