@@ -8,7 +8,7 @@ namespace ShikkhanobishMainWeb.Models
 {
     public class Question
     {
-        public string questionID { get; set; }
+        public int questionID { get; set; }
         public int classID { get; set; }
         public int subjectID { get; set; }
         public int chapterID { get; set; }
@@ -20,7 +20,7 @@ namespace ShikkhanobishMainWeb.Models
         public string option4 { get; set; }
         public int rightAnswer { get; set; }
         public string review { get; set; }
-        public int quesImages { get; set; }
+        public string quesImages { get; set; }
         public string Response { get; set; }
     }
 }

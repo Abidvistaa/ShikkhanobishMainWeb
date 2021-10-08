@@ -16,7 +16,7 @@
     <link href="~/css/makeQues.css" />
 </head>
 
-<body>
+<body style="background-color:white">
 
     <!-- Begin page -->
     <!-- Start Page Content here -->
@@ -70,47 +70,66 @@
         <div class="row">
 
             <div class="col-md-12">
-                <div class="card tqTable">
-                    <div class="card-header">
-                        <h5>TeacherQuestionHistory</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-area">
-                            <!-- table-responsive -->
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>tqID</th>
-                                            <th>teacherID</th>
-                                            <th>questionID</th>
-                                            <th>Review</th>
-
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        @for (int i = 0; i < tqhList.Count; i++)
-                                        {
-                                            <tr>
-                                                <td>@tqhList[i].tqID</td>
-                                                <td>@tqhList[i].teacherID</td>
-                                                <td>@tqhList[i].questionID</td>
-                                                <td>@tqhList[i].review</td>
-
-                                            </tr>
-
-                                        }
-
-                                    </tbody>
-
-
-
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                <div class="card-header">
+                    <h5>TeacherQuestionHistory</h5>
                 </div>
+                <br />
+                <br />
+                <br />
+                @for (int i = 0; i < tqhList.Count; i++)
+                {
+                    for (int j = 0; j < questionList.Count; j++)
+                    {
+                        if (tqhList[i].questionID == questionList[i].questionID)
+                        {
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <h6 style="color:#7146FE"> Question</h6>
+                                    <textarea class="form-control" style="height: 150px; width: 600px; background-color: #E9F7EF; color: black; font-size: 24px ">@questionList[i].mainQuestion</textarea>
+                                </div>
+                            </div>
+                            <br />
+
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <div class="col-4">
+                                        <h6 style="color:#7146FE">Option1:</h6>
+                                        <textarea class="form-control" style="width: 200px; height: 80px; text-align: center; background-color: #E9F7EF; color: black; font-size: 16px ">@questionList[i].option1</textarea>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-4">
+                                        <h6 style="color:#7146FE">Option2:</h6>
+                                        <textarea class="form-control" style="width: 200px; height: 80px; text-align: center; background-color: #E9F7EF; color: black; font-size: 16px ">@questionList[i].option2</textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <div class="col-4">
+                                        <h6 style="color:#7146FE">Option3:</h6>
+                                        <textarea class="form-control" style="width: 200px; height: 80px; text-align: center; background-color: #E9F7EF; color: black; font-size: 16px ">@questionList[i].option3</textarea>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-4">
+                                        <h6 style="color:#7146FE">Option4:</h6>
+                                        <textarea class="form-control" style="width: 200px; height: 80px; text-align: center; background-color: #E9F7EF; color: black; font-size: 16px ">@questionList[i].option4</textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <br />
+                            <hr />
+                            <hr />
+                            <br />
+
+                        }
+                    }
+                }
             </div>
         </div>
         <br />
@@ -142,6 +161,7 @@
 
     int countTQH;
     List<TeacherQuesHistory> tqhList = new List<TeacherQuesHistory>();
+    List<Question> questionList = new List<Question>();
 
     protected override async Task OnInitializedAsync()
     {
@@ -161,6 +181,9 @@
             }
         }
 
+
+        List<Question> ques = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/getQuestion".GetJsonAsync<List<Question>>();
+        questionList = ques;
     }
 
     public async Task GetStudentCount()
@@ -177,10 +200,6 @@
             }
             countTQH = count;
         }
-
-
-
-
     }
 
 
