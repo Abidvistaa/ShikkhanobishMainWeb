@@ -14,6 +14,7 @@
     <meta content="Coderthemes" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link href="~/css/makeQues.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 
 <body style="background-color:white">
@@ -32,23 +33,26 @@
             <div class="form-group row " >
                 
                 <div class="col-md-6 ">
-                    <h3 style="color:darkmagenta">Teacher QuestionHistory</h3>
+                    <h3 style="color:black">Teacher QuestionHistory</h3>
                 </div>
                 <div class="col-md-6" style="text-align:right">
-                    <h2 style="color:crimson;font-family:Garamond; ">TeacherName</h2>
+                    <h3 style="color: #8F2EE3;">@tName</h3>
                 </div>
             </div>
             <br />
             <br />
 
-            <div class="form-group row">
-                <div class="card-box widget-inline offset-5" style="background-color: #D2B4DE">
-                    <div class="text-center p-3">
-                        <h2 class="mt-2"style="color:white"> <b>@countTQH</b></h2>
-                        <p class="" style="color:rebeccapurple">
-                            Total Uploaded
+            <div class="form-group row justify-content-center">
+                
+                <div class=" " >
+                    <div class="card-box widget-inline " style="background-color: #D2B4DE ;">
+                        <div class="text-center p-2">
+                            <h2 class="" style="color:white"> <b>@countTQH</b></h2>
+                            <p class="" style="color:rebeccapurple">
+                                Total Uploaded
 
-                        </p>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -58,7 +62,7 @@
         <br />
         <div class="col-12 " style="text-align:right">
 
-            <a href="MakeQuestion" class="btn btn-outline-info">
+            <a href="@($"MakeQuestion/{tID}")" class="btn btn-outline-info">
                 <i class="fas fa-marker "></i>
                 <span> Make Question </span>
             </a>
@@ -91,56 +95,58 @@
                                     if (tqhList[m].questionID == questionList[n].questionID && questionList[n].classID == allClassList[k].classID && questionList[n].subjectID==allSubject[p].subjectID &&  questionList[n].chapterID==allChapter[q].chapterID)
                                     {
             <div class="form-group row">
-                <div class="col-md-12" >
-                    <label class="" style="background-color: #7D3C98; color: white; border-radius: 30%; padding: 5px 12px; ">@allClassList[k].name</label>
-                    <label class="" style="background-color: #CD6155; color: white; border-radius: 30%; padding: 5px 12px; ">@allSubject[p].name</label>
-                    <label class="" style="background-color: #73C6B6; color: white; border-radius: 30%; padding: 5px 12px; ">@allChapter[q].name</label>
+                <div class="col-md-6">
+                    <label class="" style=" border-radius: 10px; border: 1px solid @questionList[n].reviewColor; padding: 3px 12px; color:@questionList[n].reviewColor;">@questionList[n].reviewName</label>
+                </div>
+                <div class="col-md-6" style="text-align:right">
+                    <label class="" style="background-color: #7D3C98; color: white; border-radius: 10px; padding: 3px 12px; ">@allClassList[k].name</label>
+                    <label class="" style="background-color: #CD6155; color: white; border-radius: 10px; padding: 3px 12px; ">@allSubject[p].name</label>
+                    <label class="" style="background-color: #73C6B6; color: white; border-radius: 10px; padding: 3px 12px; ">@allChapter[q].name</label>
 
                 </div>
-                
+
             </div>
 
 
                                         <div class="form-group row">
                                             <div class="col-md-12">
                                                 <h6 style="color:#7146FE"> Question</h6>
-                                                <input type="text" class="form-control" style="height: 150px; width: 600px; background-color: #E9F7EF; color: black; font-size: 24px " @bind="@questionList[n].mainQuestion">
+                                                <input type="text" readonly class="form-control" style="height: 150px;  color: black; font-size: 18px " @bind="@questionList[n].mainQuestion">
                                             </div>
                                         </div>
                                         <br />
 
                                         <div class="form-group row">
-                                            <div class="col-md-6">
-                                                <div class="col-4">
+                                            <div class="col-md-8">
+                                                <div class="col-8">
                                                     <h6 style="color:#7146FE">Option1:</h6>
-                                                    <input type="text" class="form-control" style="width: 200px; height: 80px; text-align: center; background-color: #E9F7EF; color: black; font-size: 16px " @bind="@questionList[n].option1">
+                                                    <input type="text" readonly class="form-control" style=" height: 100px; text-align: center; background-color:@questionList[n].op1BackColor; color: black; font-size: 14px " @bind="@questionList[n].option1">
                                                 </div>
 
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="col-4">
+                                            <div class="col-md-8">
+                                                <div class="col-8">
                                                     <h6 style="color:#7146FE">Option2:</h6>
-                                                    <input type="text" class="form-control" style="width: 200px; height: 80px; text-align: center; background-color: #E9F7EF; color: black; font-size: 16px " @bind="@questionList[n].option2">
+                                                    <input type="text" readonly class="form-control" style=" height: 100px; text-align: center; background-color:@questionList[n].op2BackColor; color: black; font-size: 14px " @bind="@questionList[n].option2">
                                                 </div>
 
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-md-6">
-                                                <div class="col-4">
+                                            <div class="col-md-8">
+                                                <div class="col-8">
                                                     <h6 style="color:#7146FE">Option3:</h6>
-                                                    <input type="text" class="form-control" style="width: 200px; height: 80px; text-align: center; background-color: #E9F7EF; color: black; font-size: 16px "@bind="@questionList[n].option3">
+                                                    <input type="text" readonly class="form-control" style=" height: 100px; text-align: center; background-color:@questionList[n].op3BackColor; color: black; font-size: 14px " @bind="@questionList[n].option3">
                                                 </div>
 
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="col-4">
+                                            <div class="col-md-8">
+                                                <div class="col-8">
                                                     <h6 style="color:#7146FE">Option4:</h6>
-                                                    <input type="text" class="form-control" style="width: 200px; height: 80px; text-align: center; background-color: #E9F7EF; color: black; font-size: 16px " @bind="@questionList[n].option4">
+                                                    <input type="text" readonly class="form-control" style=" height: 100px; text-align: center; background-color:@questionList[n].op4BackColor; color: black; font-size: 14px " @bind="@questionList[n].option4">
                                                 </div>
-                                                
+
                                             </div>
                                         </div>
+                                        
                                         <br />
                                         <hr />
                                         <hr />
@@ -183,20 +189,31 @@
     [Parameter]
     public string tID { get; set; }
 
+    public string tName { get; set; }
+
+
     int countTQH;
     List<TeacherQuesHistory> tqhList = new List<TeacherQuesHistory>();
     List<Question> questionList = new List<Question>();
 
+    List<Teacher> teacherList = new List<Teacher>();
 
     List<ClassInfo> allClassList = new List<ClassInfo>();
     List<Subject> allSubject = new List<Subject>();
     List<Chapter> allChapter = new List<Chapter>();
+
+    string selectedColorone = "";
+    string selectedColortwo = "";
+    string selectedColorthree = "";
+    string selectedColorfour = "";
 
     protected override async Task OnInitializedAsync()
     {
         await GetTeacherQuestionHistory();
         await GetStudentCount();
         await GetClassSubChap();
+        await GetTeacherWithID();
+
     }
 
     public async Task GetTeacherQuestionHistory()
@@ -213,6 +230,52 @@
 
 
         List<Question> ques = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/getQuestion".GetJsonAsync<List<Question>>();
+        for(int i = 0; i < ques.Count; i++)
+        {
+            if(ques[i].rightAnswer == 1)
+            {
+                ques[i].op1BackColor = "#B1FED3";
+                ques[i].op2BackColor = "white";
+                ques[i].op3BackColor = "white";
+                ques[i].op4BackColor = "white";
+            }
+            if (ques[i].rightAnswer == 2)
+            {
+                ques[i].op1BackColor = "white";
+                ques[i].op2BackColor = "#B1FED3";
+                ques[i].op3BackColor = "white";
+                ques[i].op4BackColor = "white";
+            }
+            if (ques[i].rightAnswer == 3)
+            {
+                ques[i].op1BackColor = "white";
+                ques[i].op2BackColor = "white";
+                ques[i].op3BackColor = "#B1FED3";
+                ques[i].op4BackColor = "white";
+            }
+            if (ques[i].rightAnswer == 4)
+            {
+                ques[i].op1BackColor = "white";
+                ques[i].op2BackColor = "white";
+                ques[i].op3BackColor = "white";
+                ques[i].op4BackColor = "#B1FED3";
+            }
+            if(ques[i].review == 0)
+            {
+                ques[i].reviewColor = "#DBD406 ";
+                ques[i].reviewName = "Pending";
+            }
+            if (ques[i].review == 1)
+            {
+                ques[i].reviewColor = "#4EDB06 ";
+                ques[i].reviewName = "Approved";
+            }
+            if (ques[i].review == 2)
+            {
+                ques[i].reviewColor = "Gray";
+                ques[i].reviewName = "Not Approved";
+            }
+        }
         questionList = ques;
     }
 
@@ -246,5 +309,23 @@
     }
 
 
+
+    public async Task GetTeacherWithID()
+    {
+        var list = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getAllTeacher".PostJsonAsync(new { }).ReceiveJson<List<Teacher>>();
+        for (int i=0;i<list.Count;i++)
+        {
+            if (tID == list[i].teacherID.ToString())
+            {
+                tName = list[i].name;
+            }
+        }
+    }
+
+    //90843385
+
+    
+
+    
 }
 

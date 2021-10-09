@@ -12,6 +12,6 @@ namespace ShikkhanobishMainWeb.Models
         public int tqID { get; set; }
         public int teacherID { get; set; }
         public int questionID { get; set; }
-        public int review { get; set; }
+        public string review { get; set; }
     }
 }
