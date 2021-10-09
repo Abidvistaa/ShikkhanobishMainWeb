@@ -30,13 +30,11 @@
         <div class="container-fluid">
             <!--row-->
             <div class="form-group row " >
-                <div class="col-md-4">
-
-                </div>
-                <div class="col-md-4">
+                
+                <div class="col-md-6 ">
                     <h3 style="color:darkmagenta">Teacher QuestionHistory</h3>
                 </div>
-                <div class="col-md-4" style="text-align:right">
+                <div class="col-md-6" style="text-align:right">
                     <h2 style="color:crimson;font-family:Garamond; ">TeacherName</h2>
                 </div>
             </div>
@@ -44,10 +42,10 @@
             <br />
 
             <div class="form-group row">
-                <div class="card-box widget-inline offset-5">
+                <div class="card-box widget-inline offset-5" style="background-color: #D2B4DE">
                     <div class="text-center p-3">
-                        <h2 class="mt-2"> <b>@countTQH</b></h2>
-                        <p class="text-muted mb-0">
+                        <h2 class="mt-2"style="color:white"> <b>@countTQH</b></h2>
+                        <p class="" style="color:rebeccapurple">
                             Total Uploaded
 
                         </p>
@@ -76,59 +74,85 @@
                 <br />
                 <br />
                 <br />
-                @for (int i = 0; i < tqhList.Count; i++)
+
+                <br />
+
+
+                @for (int m = 0; m < tqhList.Count; m++)
                 {
-                    for (int j = 0; j < questionList.Count; j++)
+                    for (int n = 0; n < questionList.Count; n++)
                     {
-                        if (tqhList[i].questionID == questionList[i].questionID)
+                        for (int k = 0; k < allClassList.Count; k++)
                         {
-                            <div class="form-group row">
-                                <div class="col-md-12">
-                                    <h6 style="color:#7146FE"> Question</h6>
-                                    <textarea class="form-control" style="height: 150px; width: 600px; background-color: #E9F7EF; color: black; font-size: 24px ">@questionList[i].mainQuestion</textarea>
-                                </div>
-                            </div>
-                            <br />
+                            for (int p = 0; p < allSubject.Count; p++)
+                            {
+                                for (int q = 0; q < allChapter.Count; q++)
+                                {
+                                    if (tqhList[m].questionID == questionList[n].questionID && questionList[n].classID == allClassList[k].classID && questionList[n].subjectID==allSubject[p].subjectID &&  questionList[n].chapterID==allChapter[q].chapterID)
+                                    {
+            <div class="form-group row">
+                <div class="col-md-12" >
+                    <label class="" style="background-color: #7D3C98; color: white; border-radius: 30%; padding: 5px 12px; ">@allClassList[k].name</label>
+                    <label class="" style="background-color: #CD6155; color: white; border-radius: 30%; padding: 5px 12px; ">@allSubject[p].name</label>
+                    <label class="" style="background-color: #73C6B6; color: white; border-radius: 30%; padding: 5px 12px; ">@allChapter[q].name</label>
 
-                            <div class="form-group row">
-                                <div class="col-md-6">
-                                    <div class="col-4">
-                                        <h6 style="color:#7146FE">Option1:</h6>
-                                        <textarea class="form-control" style="width: 200px; height: 80px; text-align: center; background-color: #E9F7EF; color: black; font-size: 16px ">@questionList[i].option1</textarea>
-                                    </div>
+                </div>
+                
+            </div>
 
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="col-4">
-                                        <h6 style="color:#7146FE">Option2:</h6>
-                                        <textarea class="form-control" style="width: 200px; height: 80px; text-align: center; background-color: #E9F7EF; color: black; font-size: 16px ">@questionList[i].option2</textarea>
-                                    </div>
 
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-6">
-                                    <div class="col-4">
-                                        <h6 style="color:#7146FE">Option3:</h6>
-                                        <textarea class="form-control" style="width: 200px; height: 80px; text-align: center; background-color: #E9F7EF; color: black; font-size: 16px ">@questionList[i].option3</textarea>
-                                    </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-12">
+                                                <h6 style="color:#7146FE"> Question</h6>
+                                                <input type="text" class="form-control" style="height: 150px; width: 600px; background-color: #E9F7EF; color: black; font-size: 24px " @bind="@questionList[n].mainQuestion">
+                                            </div>
+                                        </div>
+                                        <br />
 
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="col-4">
-                                        <h6 style="color:#7146FE">Option4:</h6>
-                                        <textarea class="form-control" style="width: 200px; height: 80px; text-align: center; background-color: #E9F7EF; color: black; font-size: 16px ">@questionList[i].option4</textarea>
-                                    </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <div class="col-4">
+                                                    <h6 style="color:#7146FE">Option1:</h6>
+                                                    <input type="text" class="form-control" style="width: 200px; height: 80px; text-align: center; background-color: #E9F7EF; color: black; font-size: 16px " @bind="@questionList[n].option1">
+                                                </div>
 
-                                </div>
-                            </div>
-                            <br />
-                            <hr />
-                            <hr />
-                            <br />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="col-4">
+                                                    <h6 style="color:#7146FE">Option2:</h6>
+                                                    <input type="text" class="form-control" style="width: 200px; height: 80px; text-align: center; background-color: #E9F7EF; color: black; font-size: 16px " @bind="@questionList[n].option2">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <div class="col-4">
+                                                    <h6 style="color:#7146FE">Option3:</h6>
+                                                    <input type="text" class="form-control" style="width: 200px; height: 80px; text-align: center; background-color: #E9F7EF; color: black; font-size: 16px "@bind="@questionList[n].option3">
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="col-4">
+                                                    <h6 style="color:#7146FE">Option4:</h6>
+                                                    <input type="text" class="form-control" style="width: 200px; height: 80px; text-align: center; background-color: #E9F7EF; color: black; font-size: 16px " @bind="@questionList[n].option4">
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <hr />
+                                        <hr />
+                                        <br />
+                                    }
+                                }
+                            }
 
                         }
                     }
+
+
                 }
             </div>
         </div>
@@ -163,10 +187,16 @@
     List<TeacherQuesHistory> tqhList = new List<TeacherQuesHistory>();
     List<Question> questionList = new List<Question>();
 
+
+    List<ClassInfo> allClassList = new List<ClassInfo>();
+    List<Subject> allSubject = new List<Subject>();
+    List<Chapter> allChapter = new List<Chapter>();
+
     protected override async Task OnInitializedAsync()
     {
         await GetTeacherQuestionHistory();
         await GetStudentCount();
+        await GetClassSubChap();
     }
 
     public async Task GetTeacherQuestionHistory()
@@ -202,6 +232,18 @@
         }
     }
 
+
+
+    public async Task GetClassSubChap()
+    {
+
+
+        allClassList = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/getClassInfo".GetJsonAsync<List<ClassInfo>>();
+        allSubject = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/getSubject".GetJsonAsync<List<Subject>>();
+        allChapter = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/getChapter".GetJsonAsync<List<Chapter>>();
+
+
+    }
 
 
 }

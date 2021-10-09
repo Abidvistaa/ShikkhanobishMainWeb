@@ -41,7 +41,7 @@
                                 </a>
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-4 " style="text-align:center">
                                 <h3 style="color:darkmagenta">Question Making</h3>
                             </div>
                             <div class="col-md-4" style="text-align:right">
@@ -51,7 +51,7 @@
                         
                         <br />
                         <br />
-                        <EditForm Model="@Question" >
+                        
 
                             <div>
 
@@ -91,16 +91,7 @@
                                 <br />
                                 <br />
                                 <br />
-                                <div class="form-group row">
-                                    <div class="col-1">
-                                        <h6 style="color:#7146FE">Question ID</h6>
-                                    </div>
-                                    <div class="col-3">
-                                        <input type="text" class="form-control" @bind="@Question.questionID"/>
-                                    </div>
-                                </div>
-                                <br />
-                                <br />
+                                
 
                                 <div class="form-group row">
                                     <div class="col-12">
@@ -171,7 +162,7 @@
                                 </div>
 
                             </div>
-                            </EditForm>
+                            
                         </div>
                         
 
@@ -201,6 +192,9 @@
 
 
 @code{
+
+   
+
 
 
     [Parameter]
@@ -313,7 +307,7 @@
 
     private void SubjectChanged(ChangeEventArgs subjectEvent)
     {
-        
+
         sid = subjectEvent.Value.ToString();
         Question.subjectID = int.Parse(sid);
 
@@ -336,12 +330,15 @@
 
     public async Task SubmitQuestion()
     {
+
         Random rnd = new Random();
+
+        int quesId = rnd.Next(1, 1000);
         int hisotyId = rnd.Next(1, 1000);
 
         var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/setQuestion".PostUrlEncodedAsync(new
         {
-            questionID = Question.questionID,
+            questionID = quesId,
             classID = Question.classID,
             quesImages = "n/a",
             subjectID = Question.subjectID,
@@ -359,7 +356,7 @@
 
             tqID= hisotyId,
             teacherID =Int16.Parse(tID),
-            questionID = Question.questionID
+            questionID = quesId
         })
                   .ReceiveJson<Response>();
 
@@ -376,7 +373,7 @@
 
 
     }
-    
+
 
 
 
