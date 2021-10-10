@@ -72,8 +72,8 @@
         <div class="row">
 
             <div class="col-md-12">
-                <div class="card-header">
-                    <h5>TeacherQuestionHistory</h5>
+                <div class="card-header " style="text-align:center">
+                    <h5>Question History</h5>
                 </div>
                 <br />
                 <br />
@@ -92,26 +92,34 @@
                             {
                                 for (int q = 0; q < allChapter.Count; q++)
                                 {
-                                    if (tqhList[m].questionID == questionList[n].questionID && questionList[n].classID == allClassList[k].classID && questionList[n].subjectID==allSubject[p].subjectID &&  questionList[n].chapterID==allChapter[q].chapterID)
+                                    if (tqhList[m].questionID == questionList[n].questionID && questionList[n].classID == allClassList[k].classID && questionList[n].subjectID == allSubject[p].subjectID && questionList[n].chapterID == allChapter[q].chapterID)
                                     {
-            <div class="form-group row">
-                <div class="col-md-6">
-                    <label class="" style=" border-radius: 10px; border: 1px solid @questionList[n].reviewColor; padding: 3px 12px; color:@questionList[n].reviewColor;">@questionList[n].reviewName</label>
-                </div>
-                <div class="col-md-6" style="text-align:right">
-                    <label class="" style="background-color: #7D3C98; color: white; border-radius: 10px; padding: 3px 12px; ">@allClassList[k].name</label>
-                    <label class="" style="background-color: #CD6155; color: white; border-radius: 10px; padding: 3px 12px; ">@allSubject[p].name</label>
-                    <label class="" style="background-color: #73C6B6; color: white; border-radius: 10px; padding: 3px 12px; ">@allChapter[q].name</label>
+                                        <div class="form-group row">
+                                            <div class="col-2">
+                                                <label class="" style=" border-radius: 10px; border: 1px solid @questionList[n].reviewColor; padding: 3px 12px; color:@questionList[n].reviewColor;">@questionList[n].reviewName</label>
+                                            </div>
+                                            <div class="col-10" style="text-align:right">
+                                                <label >@tqhList[m].review</label>
+                                            </div>
+                                            
 
-                </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            
+                                            <div class="col-12" style="text-align:right" >
+                                                <label class="" style="background-color: #7D3C98; color: white; border-radius: 10px; padding: 3px 12px; ">@allClassList[k].name</label>
+                                                <label class="" style="background-color: #CD6155; color: white; border-radius: 10px; padding: 3px 12px; ">@allSubject[p].name</label>
+                                                <label class="" style="background-color: #73C6B6; color: white; border-radius: 10px; padding: 3px 12px; ">@allChapter[q].name</label>
 
-            </div>
+                                            </div>
+
+                                        </div>
 
 
                                         <div class="form-group row">
                                             <div class="col-md-12">
                                                 <h6 style="color:#7146FE"> Question</h6>
-                                                <input type="text" readonly class="form-control" style="height: 150px;  color: black; font-size: 18px " @bind="@questionList[n].mainQuestion">
+                                                <input type="text" readonly class="form-control" style="height: 150px; color: black; background-color:white; font-size: 18px " @bind="@questionList[n].mainQuestion">
                                             </div>
                                         </div>
                                         <br />
@@ -146,7 +154,7 @@
 
                                             </div>
                                         </div>
-                                        
+
                                         <br />
                                         <hr />
                                         <hr />
@@ -192,6 +200,7 @@
     public string tName { get; set; }
 
 
+
     int countTQH;
     List<TeacherQuesHistory> tqhList = new List<TeacherQuesHistory>();
     List<Question> questionList = new List<Question>();
@@ -210,9 +219,10 @@
     protected override async Task OnInitializedAsync()
     {
         await GetTeacherQuestionHistory();
-        await GetStudentCount();
+        await GetHistoryCount();
         await GetClassSubChap();
         await GetTeacherWithID();
+       
 
     }
 
@@ -227,7 +237,11 @@
                 tqhList.Add(thl[i]);
             }
         }
-
+        List<TeacherQuesHistory> SortedList = new List<TeacherQuesHistory>();
+        SortedList = tqhList.OrderBy(x => x.review).ToList();
+        SortedList.Reverse();
+        tqhList.Clear();
+        tqhList = SortedList;
 
         List<Question> ques = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/getQuestion".GetJsonAsync<List<Question>>();
         for(int i = 0; i < ques.Count; i++)
@@ -279,7 +293,7 @@
         questionList = ques;
     }
 
-    public async Task GetStudentCount()
+    public async Task GetHistoryCount()
     {
 
         int count = 0;
@@ -322,10 +336,14 @@
         }
     }
 
+    
+
+
+
     //90843385
 
-    
 
-    
+
+
 }
 

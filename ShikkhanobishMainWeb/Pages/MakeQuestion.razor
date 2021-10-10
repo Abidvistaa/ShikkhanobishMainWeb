@@ -57,17 +57,17 @@
 
                                 <div class="form-group row">
                                     <div class="col-md-4 ">
-                                        <select class="form-control" id="class" @onchange="ClassChanged">
-                                            <option value="">-- Select Class --</option>
+                                        <select class="form-control btn btn-purple" id="class" @onchange="ClassChanged" >
+                                            <option style="" value="">-- Select Class --</option>
                                             @foreach (var item in objList)
                                             {
-                                                <option value="@item.classID">@item.name</option>
+                                                <option  value="@item.classID">@item.name</option>
                                             }
                                         </select>
 
                                     </div>
                                     <div class="col-md-4 ">
-                                        <select class="form-control" id="subject" @onchange="SubjectChanged">
+                                        <select class="form-control btn btn-purple" id="subject" @onchange="SubjectChanged">
                                             <option value="">-- Select Subject --</option>
                                             @foreach (var item in objList2)
                                             {
@@ -77,7 +77,7 @@
 
                                     </div>
                                     <div class="col-md-4 ">
-                                        <select class="form-control" id="chapter" @onchange="ChapterChanged">
+                                        <select class="form-control btn btn-purple" id="chapter" @onchange="ChapterChanged">
                                             <option value="">-- Select Chapter --</option>
                                             @foreach (var item in objList3)
                                             {
@@ -183,7 +183,6 @@
 
 
 
-
     [Parameter]
     public string tID { get; set; }
 
@@ -220,6 +219,7 @@
         await GetSubInfo();
         await GetChapterInfo();
         await GetTeacherWithID();
+        
 
 
     }
@@ -277,6 +277,7 @@
     }
     private void  ClassChanged(ChangeEventArgs classEvent)
     {
+
         objList2.Clear();
         cid = classEvent.Value.ToString();
         Question.classID = int.Parse(cid);
@@ -339,16 +340,19 @@
             option4 = Question.option4,
             rightAnswer = Question.rightAnswer
         })
-               .ReceiveJson<Response>();
+           .ReceiveJson<Response>();
         int thisTeacherID = Int32.Parse(tID);
+        string dateTime = DateTime.Now.ToString("dd'-'MM'-'yyyy' 'HH':'mm':'ss");
+
         var historyres = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/setTeacherQuestionHistory".PostUrlEncodedAsync(new
         {
 
             tqID= hisotyId,
             teacherID = thisTeacherID,
-            questionID = quesId
+            questionID = quesId,
+            review=dateTime
         })
-                  .ReceiveJson<Response>();
+              .ReceiveJson<Response>();
 
 
 
@@ -375,6 +379,9 @@
             }
         }
     }
+
+    
+
 }
 
 
