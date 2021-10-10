@@ -277,7 +277,7 @@
     }
     private void  ClassChanged(ChangeEventArgs classEvent)
     {
-        //objList.Clear();
+        objList2.Clear();
         cid = classEvent.Value.ToString();
         Question.classID = int.Parse(cid);
         for (int i=0;i< allSubject.Count;i++)
@@ -295,7 +295,7 @@
 
     private void SubjectChanged(ChangeEventArgs subjectEvent)
     {
-
+        objList3.Clear();
         sid = subjectEvent.Value.ToString();
         Question.subjectID = int.Parse(sid);
 
@@ -375,10 +375,6 @@
             }
         }
     }
-
-
-
-
 }
 
 
